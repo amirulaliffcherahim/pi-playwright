@@ -2,7 +2,7 @@
 
 > High-performance real browser automation, interactive web navigation, screenshot vision audit, and model-delegated inspection for [Pi Coding Agent](https://pi.dev).
 
-`pi-playwright` equips Pi with real browser capabilities powered by Chromium/Edge via `playwright-core`. It introduces the unified `/play` command with an interactive model picker (similar to `/advisor-models`) allowing you to designate dedicated primary and fallback models to visually inspect and audit web pages without consuming tokens in your main session transcript.
+`pi-playwright` equips Pi with real browser capabilities powered by Chromium/Edge via `playwright-core`. It introduces the unified `/playwright` command with an interactive model picker (similar to `/advisor-models`) allowing you to designate dedicated primary and fallback models to visually inspect and audit web pages without consuming tokens in your main session transcript.
 
 ---
 
@@ -10,9 +10,9 @@
 
 - 🌐 **Real Browser Automation**: Launch, navigate, click, fill forms, press keys, and evaluate arbitrary JavaScript inside real desktop browser instances (Edge / Chrome).
 - 👁️ **Visual & DOM Audits (`browser_audit`)**: Delegate full-page screenshot audits and questions to a dedicated vision model (e.g. `agy/gemini-3.8-flash` or `claude/claude-haiku-5-5`) with automatic fallback. Shields main chat context from large image/DOM tokens.
-- 🎯 **Interactive Model Picker (`/play models`)**: Seamless TUI selector to configure and persist primary and fallback audit models across sessions.
+- 🎯 **Interactive Model Picker (`/playwright models`)**: Seamless TUI selector to configure and persist primary and fallback audit models across sessions.
 - 📸 **High-Resolution Screenshots (`browser_screenshot`)**: Native viewport and full-page captures saved locally to `~/.pi/generated-images/` and returned as image blocks to vision-capable models.
-- 🪟 **Headed & Headless Toggle**: Switch between interactive desktop browser windows and headless background execution on the fly via `/play head`.
+- 🪟 **Headed & Headless Toggle**: Switch between interactive desktop browser windows and headless background execution on the fly via `/playwright head`.
 - ⚡ **Zero-Bloat Single Process**: Automatically resolves local Chromium/Edge binaries; shuts down gracefully on Pi session termination.
 
 ---
@@ -40,20 +40,18 @@ pi list
 
 ---
 
-## 🕹️ Slash Commands (`/play`)
+## 🕹️ Slash Commands (`/playwright`)
 
 Control browser state and audit configuration directly from Pi's chat prompt:
 
 | Command | Description |
 |---|---|
-| `/play` | Open interactive action menu (select models, view status, toggle window mode) |
-| `/play models` | Open interactive searchable model selector for primary and fallback audit models |
-| `/play open <url>` | Launch browser and navigate directly to target URL |
-| `/play close` | Close active browser session and release memory |
-| `/play head` | Toggle between headed (visible desktop window) and headless mode |
-| `/play status` | Display active browser executable, window state, and audit model configuration |
-
-*(Note: `/browser` is preserved as an alias for backwards compatibility.)*
+| `/playwright` | Open interactive action menu (select models, view status, toggle window mode) |
+| `/playwright models` | Open interactive searchable model selector for primary and fallback audit models |
+| `/playwright open <url>` | Launch browser and navigate directly to target URL |
+| `/playwright close` | Close active browser session and release memory |
+| `/playwright head` | Toggle between headed (visible desktop window) and headless mode |
+| `/playwright status` | Display active browser executable, window state, and audit model configuration |
 
 ---
 

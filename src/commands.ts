@@ -33,7 +33,7 @@ export async function handlePlayCommand(
   const parts = args.trim().split(/\s+/).filter(Boolean);
   const sub = parts[0]?.toLowerCase();
 
-  // /play models | /play model
+  // /playwright model | /playwright models
   if (sub === "model" || sub === "models") {
     if (!ctx.hasUI) {
       const cfg = loadPlaywrightConfig();
@@ -70,11 +70,11 @@ export async function handlePlayCommand(
     return;
   }
 
-  // /play open <url>
+  // /playwright open <url>
   if (sub === "open") {
     const url = parts[1];
     if (!url) {
-      emit(ctx, "Usage: /play open <url>", "warning");
+      emit(ctx, "Usage: /playwright open <url>", "warning");
       return;
     }
     try {
@@ -90,14 +90,14 @@ export async function handlePlayCommand(
     return;
   }
 
-  // /play close
+  // /playwright close
   if (sub === "close") {
     await closeBrowserSession();
     emit(ctx, "Browser session closed.");
     return;
   }
 
-  // /play head | /play headless
+  // /playwright head | /playwright headless
   if (sub === "head" || sub === "headed" || sub === "headless") {
     const nextMode = sub === "headless" ? false : !getHeadedMode();
     await setHeadedMode(nextMode);
@@ -105,7 +105,7 @@ export async function handlePlayCommand(
     return;
   }
 
-  // /play config | /play status
+  // /playwright config | /playwright status
   if (sub === "config" || sub === "status") {
     const cfg = loadPlaywrightConfig();
     const statusLines = [
@@ -118,11 +118,11 @@ export async function handlePlayCommand(
       `  Max audit tokens: ${cfg.maxTokens ?? 1000}`,
       "",
       "Subcommands:",
-      "  /play models       - Open interactive model picker for audit primary & fallback",
-      "  /play open <url>   - Launch browser and navigate to URL",
-      "  /play close        - Close active browser session",
-      "  /play head         - Toggle headed vs headless mode",
-      "  /play status       - View active configuration",
+      "  /playwright models       - Open interactive model picker for audit primary & fallback",
+      "  /playwright open <url>   - Launch browser and navigate to URL",
+      "  /playwright close        - Close active browser session",
+      "  /playwright head         - Toggle headed vs headless mode",
+      "  /playwright status       - View active configuration",
     ];
     emit(ctx, statusLines.join("\n"));
     return;
@@ -130,9 +130,9 @@ export async function handlePlayCommand(
 
   // Default: show usage or open model selector if run bare in interactive UI
   if (!sub && ctx.hasUI) {
-    const action = await ctx.ui.select("Pi Playwright (/play) Action", [
-      "Select Audit Models (/play models)",
-      "View Status & Config (/play status)",
+    const action = await ctx.ui.select("Pi Playwright (/playwright) Action", [
+      "Select Audit Models (/playwright models)",
+      "View Status & Config (/playwright status)",
       "Toggle Headed / Headless Window",
       "Close Browser Session",
     ]);
@@ -153,7 +153,7 @@ export async function handlePlayCommand(
 
   emit(
     ctx,
-    "Usage: /play [models | open <url> | close | head | status]",
+    "Usage: /playwright [models | open <url> | close | head | status]",
     "warning",
   );
 }

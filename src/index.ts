@@ -283,14 +283,9 @@ export default function (pi: ExtensionAPI): void {
     await closeBrowserSession();
   });
 
-  // Slash commands: /play and legacy alias /browser
-  pi.registerCommand("play", {
-    description: "Playwright browser control & audit model picker (/play [models|open|close|head|status])",
-    handler: handlePlayCommand,
-  });
-
-  pi.registerCommand("browser", {
-    description: "Alias for /play",
+  // Slash command: /playwright
+  pi.registerCommand("playwright", {
+    description: "Playwright browser control & audit model picker (/playwright [models|open|close|head|status])",
     handler: handlePlayCommand,
   });
 }
