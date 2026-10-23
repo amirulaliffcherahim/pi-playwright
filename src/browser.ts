@@ -1,4 +1,4 @@
-import { chromium, type Browser, type BrowserContext, type Page } from "playwright-core";
+import type { Browser, BrowserContext, Page } from "playwright-core";
 import * as fs from "node:fs";
 import * as path from "node:path";
 
@@ -37,6 +37,8 @@ export async function getPage(): Promise<Page> {
     return pageInstance;
   }
   if (!browserInstance || !browserInstance.isConnected()) {
+    // Loaded on first use: playwright-core costs ~300ms at pi startup.
+    const { chromium } = await import("playwright-core");
     browserInstance = await chromium.launch({
       executablePath: resolveBrowserExecutable(),
       headless: !isHeadedMode,
